@@ -1,0 +1,21 @@
+
+<ul class="nav nav-pills nav-stacked" id="myAside">
+  <li><a class="listItem" [routerLink]="['/engins']" routerLinkActive="active" >Liste engin</a></li>
+  <li><a class="listItem" [routerLink]="['/engins/add']" routerLinkActive="active">ajouter un engin</a></li>
+  <li>
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false" class="listItem">
+      Gérer les pannes <span class="caret"></span> 
+    </a>
+    <ul class="dropdown-menu">
+      <li><a [routerLink]="['/pannes']" class="listItem">liste des pannes</a></li>
+      <li><a [routerLink]="['/ajout-panne']" class="listItem">signaler un panne</a></li>
+      <li><a [routerLink]="['/pannes/choix-devis']" class="listItem">choisir devis</a></li>
+      <li class="divider"></li>
+
+      <li><a href="#" class="listItem">lancer réparation</a></li>
+      <li><a href="#" class="listItem">uploader facture</a></li>
+      <li class="divider"></li>
+      <li><a href="#" class="listItem">Separated link</a></li>
+    </ul>
+  </li>
+</ul>

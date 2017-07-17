@@ -1,0 +1,11 @@
+
+option[value=""][disabled] {
+  display: none;
+}
+
+#advancedSearchPanel{
+    margin-top: 75px;
+}
+#advancedSearchPanel{
+    display: none;
+}

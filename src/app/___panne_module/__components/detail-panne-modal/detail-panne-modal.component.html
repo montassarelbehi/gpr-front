@@ -1,0 +1,37 @@
+
+
+<div id="detail-panne-modal" class="modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title">Détail Du Panne</h3>
+      </div>
+
+      <!-- ************ BODY *********************-->
+      <div class="modal-body">
+
+        <p class="detail-properties"><strong>Réference du panne: </strong>{{selectedPanne.reference}} </p> <hr>
+        <p class="detail-properties"><strong>Matricule de l'engin: </strong>{{selectedPanne.matricule}} </p> <hr>
+        <p class="detail-properties"><strong>Date d'occurence du panne: </strong>{{selectedPanne.dateOccurence}} </p> <hr>
+        <p class="detail-properties"><strong>Engin réparé: </strong>{{ checkIfEnginRepaired()}} </p> <hr>
+        <p class="detail-properties"><strong>Cause: </strong>{{selectedPanne.cause}} </p> <hr>
+        <div class="form-group">
+          <label>Description:</label>
+          <textarea class="form-control" readonly> {{selectedPanne.description}} </textarea>
+        </div>
+
+      </div> <!-- ************END BODY ******-->
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">fermer</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>

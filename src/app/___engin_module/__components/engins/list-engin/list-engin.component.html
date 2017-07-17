@@ -1,0 +1,113 @@
+<div class="container-fluid">
+
+<div class="row">
+<ul class="nav navbar-nav navbar-right">
+              <li><a class="btn btn-link btn-xs" (click)="setAdvancedSearchPanelVisibility()">
+                <span class="glyphicon glyphicon-search" > </span> Recherche avancée</a>
+              </li>
+          </ul>
+
+          <form #f=ngForm class="navbar-form navbar-right" role="search" (ngSubmit)="f.form.valid && searchByMatricule();searchBoxMatricule=''"
+            novalidate>
+              <div class="form-group">
+                  <input type="text" class="form-control" placeholder="chercher engin par matricule" size="40" 
+                         [(ngModel)]="searchBoxMatricule" name="searchBoxMatricule" #matr="ngModel" required/>
+              </div>
+              <button type="submit" class="btn btn-default">chercher</button>
+              <!-- <img src="assets/images/default.gif" style="height: 32px; width: 32px;"/> -->
+          </form>
+
+</div>
+<div class="row">
+  <app-advanced-search-engin (send)='onSend($event)'></app-advanced-search-engin>
+</div>
+<div  class="row">
+	<table class="table table-striped table-hover ">
+  <thead>
+  <tr>
+    <th>matricule</th>
+    <th>Type</th>
+    <th>marque</th>
+    <th>modele</th>
+    <th>Etat de l'engin</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let engin of this.engins | paginate: { itemsPerPage: 8, currentPage: p}" >
+    <td>{{engin.matricule}}</td>
+    <td>{{engin.type}}</td>
+    <td>{{engin.marque}}</td>
+    <td>{{engin.modele}}</td>
+    <td>{{engin.etat}}</td>
+    <td>
+      <button type="button" class="btn btn-link btn-xs" (click)="showDetailModal(engin)" 
+              data-toggle="modal" data-target="#detail-engin-modal">
+        <span class="glyphicon glyphicon-zoom-in" title="afficher details de l'engin"></span>
+      </button>
+
+      <button type="button" class="btn btn-link btn-xs" (click)="showUpdateModal(engin)" 
+              data-toggle="modal" data-target="#update-engin-modal">
+          <span class="glyphicon glyphicon-pencil" title="modifier l'engin"></span>
+      </button> 
+
+      <button type="button" class="btn btn-link btn-xs" (click)="engin.etat = 'SUSPENDU'; suspendreEngin(engin)" 
+              [disabled]="engin.etat === 'SUSPENDU'" >
+          <span class="	glyphicon glyphicon-remove red" title="suspendre l'engin"></span>
+      </button>
+      <span style="width: 30px;"></span>
+
+        <button *ngIf="engin.etat === 'PANNE'"   type="button" class="btn btn-link btn-xs blink">
+          <span class="glyphicon glyphicon-flag" title="engin est en panne"></span>
+        </button>
+              	
+    </td>
+    </tr>
+  </tbody>
+        
+ </table>
+
+
+
+ <div class="text-center">
+    <pagination-controls *ngIf="engins" (pageChange)="p = $event" class="engin-pagination" 
+      previousLabel="precedent" nextLabel="suivant"></pagination-controls>
+ </div>
+</div>
+
+<!-- Hidden modals for updating or viewing details of selected engin -->
+<div *ngIf="selectedEnginForDetail">
+  <app-detail-engin-modal [selectedEngin]="selectedEnginForDetail"></app-detail-engin-modal>
+</div>
+<div *ngIf="selectedEnginForUpdate">
+  <app-update-engin-modal [selectedEngin]="selectedEnginForUpdate"></app-update-engin-modal>
+</div>
+<div >
+  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">+</button>
+
+</div>
+
+
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-body">
+       <app-add-engin></app-add-engin>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+

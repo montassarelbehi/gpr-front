@@ -1,0 +1,77 @@
+<div>
+  <fieldset>
+    <legend>Choix Du Devis Correspondant</legend>
+
+    <form>
+ 
+      <!-- SEARCH BOX -->  
+<!--   
+      <div class="form-group" [ngClass]="{'has-error': f.submitted && !matricule.valid}">
+        <label>veuillez saisir la matricule de l'engin concerné : </label>
+        <input type="text" class="form-control" #matricule="ngModel" [(ngModel)]="model.matricule" name="matricule" style="display: inline-block" /> 
+        <button type="button" (click)="showDevisFields()" class="btn btn-default btn-sm">chercher</button>
+      </div>
+-->
+<div id="listePannes">
+  <table class="table table-striped table-hover ">
+      <thead>
+      <tr>
+          <th>reference_panne</th>
+          <th>matricule_engin</th>
+          <th>date_occurence</th>
+          <th>cause</th>
+          <th>réparé</th>
+      </tr>
+    </thead>
+      <tbody>
+      <tr class="liste-panne-avec-devis" *ngFor="let panne of this.pannesEnAttenteDevis | paginate: { itemsPerPage: 8, currentPage: p}" 
+          (click)="showDevis(panne.reference)">
+          <td>{{panne.reference}}</td>
+          <td>{{panne.matricule}}</td>
+          <td>{{panne.dateOccurence | date:'fullDate' }}</td>
+          <td>{{panne.cause}}</td>
+          <td>{{checkIfEnginRepaired(panne)}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container" id="liste-devis">
+    <br />
+    <p>Choisissez le devis :</p>
+    <label *ngFor="let devis of deviss" for="{{devis.reference}}">
+      <div class="devis well">
+        <input id="{{devis.reference}}" type="radio" name="devis" (change)="validate(devis.reference)" />
+        <div class="content">
+          <table>
+            <tr>
+              <th>Reference du devis:</th>
+              <td class="devis_field">{{devis.reference}}</td>
+            </tr>
+
+            <tr>
+              <th>Date du creatio du devis:</th>
+              <td class="devis_field">{{devis.dateCreation | date:'shortDate'}}</td>
+            </tr>
+
+            <tr>
+              <th>Fournisseur:</th>
+              <td class="devis_field">{{devis.fournisseur}}</td>
+            </tr>
+
+            <tr>
+              <th>Cout:</th>
+              <td class="devis_field">{{devis.cout}}</td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </label>
+
+  </div>  
+
+  </form>
+
+  </fieldset>
+</div>

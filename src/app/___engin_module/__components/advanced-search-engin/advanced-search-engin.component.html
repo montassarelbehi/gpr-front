@@ -1,0 +1,40 @@
+
+  <div id="advancedSearchPanel" style="vertical-align: middle;">
+      <form class="form-inline" (submit)="searchByParams(true);setToDefault()">
+        <div class="form-group">
+          <label>marque</label>
+          <select class="form-control input-sm" [(ngModel)]="selectedMarque" name="selectedMarque" (change)="setModeles()" >
+              
+              <option *ngFor="let marque of marques" [value]="marque" >{{marque}} </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>modele</label>
+          <select class="form-control input-sm" [(ngModel)]="selectedModele" name="selectedModele">
+              
+              <option *ngFor="let modele of modeles" [value]="modele" >{{modele}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Type</label>
+          <select class="form-control input-sm" [(ngModel)]="selectedType" name="selectedType">
+              
+              <option *ngFor="let type of types" [value]="type" >{{ type | lowercase }} </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>etat</label>
+          <select class="form-control input-sm" [(ngModel)]="selectedEtat" name="selectedEtat">
+              
+              <option *ngFor="let etat of etats" [value]="etat" >{{ etat | lowercase }} </option>
+          </select>
+        </div>
+        
+        <button type="submit" class="btn btn-link btn-xs" id="advanced-search-btn"> chercher </button>
+        <button type="button" (click)="searchByParams(false)" class="btn btn-link btn-xs" id="retablir-btn"> rétablir </button>
+      </form>
+    </div>
+

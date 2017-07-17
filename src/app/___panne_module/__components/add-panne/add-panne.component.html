@@ -1,0 +1,43 @@
+<div>
+  <fieldset>
+    <legend>Signaler un panne engin</legend>
+
+    <form #f="ngForm" (ngSubmit)="f.form.valid && addPanne()" novalidate>
+      
+      <div class="form-group" [ngClass]="{'has-error': f.submitted && !reference.valid}" >
+        <label>reference</label>
+        <input type="text" class="form-control" #reference="ngModel" [(ngModel)]="model.reference" name="reference" required />
+        <div *ngIf="f.submitted && !reference.valid" class="help-block">Vous devez saisir la reference du panne</div>  
+      </div>
+
+      <div class="form-group" >
+        <label>matricule</label>
+        <input *ngIf="anEnginIsActivated"  type="text" class="form-control" #matricule="ngModel" [(ngModel)]="model.matricule" name="matricule" disabled /> 
+        <input *ngIf="!anEnginIsActivated"  type="text" class="form-control" #matricule="ngModel" [(ngModel)]="model.matricule" name="matricule" />
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': f.submitted && !dateOccurence.valid}" >
+        <label>date et heure du panne</label>
+        <input type="datetime-local" class="form-control" #dateOccurence="ngModel" [(ngModel)]="model.dateOccurence" name="dateOccurence" required />
+        <div *ngIf="f.submitted && !dateOccurence.valid" class="help-block">Vous devez saisir la date du panne</div>  
+      </div>
+
+      <div class="form-group">
+        <label>cause du panne</label>
+        <input type="text" class="form-control" #cause="ngModel" [(ngModel)]="model.cause" name="cause" />  
+      </div>
+
+      <div class="form-group" >
+        <label>description</label>
+        <textarea rows="4" class="form-control" #description="ngModel" [(ngModel)]="model.description" name="description" >
+        </textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">signaler</button>
+        <button type="reset" class="btn">effacer</button>
+      </div>
+    </form>
+
+  </fieldset>
+</div>

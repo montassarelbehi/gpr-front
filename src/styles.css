@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.engin-pagination .ng2-pagination .current {
+    background: #32303d;
+}
+
+.ng2-pagination li:hover {
+      cursor: pointer;
+}

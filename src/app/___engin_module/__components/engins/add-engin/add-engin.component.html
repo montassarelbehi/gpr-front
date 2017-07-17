@@ -1,0 +1,136 @@
+<form  [formGroup]="enginForm" class="form-horizontal" novalidate>
+  <fieldset>
+    <legend>Ajout d'un nouveau engin</legend>
+
+    <div class="form-group">
+        <div class="row">
+            <label for="inputMatricule" class="col-lg-2 control-label">Matricule</label>
+            <div class="col-lg-10">
+                <input formControlName="matricule" type="text" class="form-control" id="inputMatricule" placeholder="Matricule">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <div  *ngIf="formErrors.matricule" class="alert alert-danger" >
+                    {{formErrors.matricule}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row" >
+            <label for="inputMarque" class="col-lg-2 control-label">Marque</label>
+            <div class="col-lg-10">
+                <select formControlName="marque" class="form-control" (change)="setModeles()">
+                    <option value="" disabled selected>sélectionner une marque</option>
+                    <option *ngFor="let marque of marques" [value]="marque" >{{marque}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10" >
+                <div *ngIf="formErrors.marque"  class="alert alert-danger">
+                    {{formErrors.marque}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-1" *ngIf="!newMarqueAdded">
+                <button class="btn btn-link btn-xs" (click)="showMarqueInputField()">nouvelle marque</button>
+            </div>
+            <div class="col-lg-6" *ngIf="newMarqueAdded">
+                <input #newmarque type="text" class="form-control" placeholder="entrer la nouvelle marque"  
+                        (blur)="hideMarqueInputField()"  id="marqueInputField">
+                <button type="button" class="btn btn-link btn-xs" (click)="addMarque(newmarque.value)">
+                    ajouter
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row" >
+            <label for="inputModele" class="col-lg-2 control-label">Modele</label>
+            <div class="col-lg-10">
+                <select formControlName="modele" class="form-control">
+                    <option value="" disabled selected>sélectionner un modele</option>
+                    <option *ngFor="let modele of modeles" [value]="modele" >{{modele}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10" >
+                <div *ngIf="formErrors.modele"  class="alert alert-danger">
+                    {{formErrors.modele}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-1" *ngIf="!newModeleAdded">
+                <button class="btn btn-link btn-xs" (click)="showModeleInputField()">nouveau modele</button>
+            </div>
+            <div class="col-lg-6" *ngIf="newModeleAdded">
+                <input #newmodele type="text" class="form-control" placeholder="entrer le nouveau modele" 
+                        (blur)="hideModeleInputField()" id="modeleInputField">
+                <button type="button" class="btn btn-link btn-xs" (click)="addModele(newmodele.value)">
+                    ajouter
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row" >
+            <label class="col-lg-2 control-label">Type</label>
+            <div class="col-lg-10">
+                <select formControlName="type" class="form-control">
+                    <option value="" disabled selected>sélectionner un type</option>
+                    <option *ngFor="let type of types" [value]="type" >{{type}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10" >
+                <div *ngIf="formErrors.type"  class="alert alert-danger">
+                    {{formErrors.type}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row" >
+            <label class="col-lg-2 control-label">Etat</label>
+            <div class="col-lg-10">
+                <select formControlName="etat" class="form-control">
+                    <option value="" disabled selected>sélectionner une etat</option>
+                    <option *ngFor="let etat of etats" [value]="etat" >{{etat}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10" >
+                <div *ngIf="formErrors.etat"  class="alert alert-danger">
+                    {{formErrors.etat}}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!enginForm.valid" >enregistrer</button>
+        <button type="reset" class="btn">effacer</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

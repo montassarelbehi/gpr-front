@@ -1,0 +1,47 @@
+#listePannes {
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.liste-panne-avec-devis:hover {
+    cursor: pointer;
+}
+
+
+
+
+#liste-devis .devis {
+    position: relative;
+    display: inline-block;
+    
+}
+
+#liste-devis .devis:hover {
+    cursor: pointer;
+    background: #F0F0F0;
+}
+
+
+#liste-devis .devis input[type=radio] {
+    position: absolute; 
+    right: 0; 
+    top: 0;
+}
+
+#liste-devis .devis .content{
+    width: 255px;
+    padding-top:40px;
+    padding-bottom:20px;
+}
+/*
+#liste-devis .devis .content table tr th{
+    border-bottom: 2px solid #334d4d;
+}
+*/
+#liste-devis .devis .content th {
+    font-size: 15px;
+}
+.devis_field {
+    font-weight: normal;
+}
+

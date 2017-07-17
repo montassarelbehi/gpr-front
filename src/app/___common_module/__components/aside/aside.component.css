@@ -1,0 +1,12 @@
+.listItem {
+    color: rgb(29, 29, 30);
+}
+
+.listItem:hover {
+    background: rgba(175, 181, 191, 0.1);
+    color: rgb(29, 29, 30);
+}
+
+#myAside {
+    margin-top: 50px;
+}

@@ -1,0 +1,15 @@
+.red {
+    color: red;
+}
+.blue {
+    color: blue;
+}
+
+.blink{
+    animation:blink 700ms infinite alternate;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0.3; }
+};

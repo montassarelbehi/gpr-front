@@ -1,0 +1,73 @@
+<div id="update-engin-modal" class="modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!--  modal contenet -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">modification</h4>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="enginForm" class="form" novalidate>
+
+              <div class="form-group">
+                  <label class="center-clock">Matricule: </label>
+                  <input class="form-control" formControlName="matricule" disabled />
+                  <div *ngIf="formErrors.matricule" class="alert alert-danger" >
+                      {{formErrors.matricule}}
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="center-clock">Marque:</label>
+                  <select class="form-control" formControlName="marque">
+                      <option *ngFor="let marque of marques" [value]="marque">{{marque}}</option>
+                  </select>
+                  <div *ngIf="formErrors.marque" class="alert alert-danger" >
+                      {{formErrors.marque}}
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="center-clock">Modele: </label>
+                  <select class="form-control" formControlName="modele">
+                      <option *ngFor="let modele of modeles" [value]="modele">{{modele}}</option>
+                  </select>
+                  <div *ngIf="formErrors.modele" class="alert alert-danger" >
+                      {{formErrors.modele}}
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="center-clock">Type engin: </label>
+                  <select class="form-control" formControlName="type">
+                      <option *ngFor="let type of types" [value]="type">{{type}}</option>
+                  </select>
+                  <div *ngIf="formErrors.type" class="alert alert-danger" >
+                      {{formErrors.type}}
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="center-clock">Etat:</label>
+                  <select class="form-control" formControlName="etat">
+                      <option *ngFor="let etat of etats" [value]="etat" >{{etat}}</option>
+                  </select>
+                  <div *ngIf="formErrors.etat" class="alert alert-danger" >
+                      {{formErrors.etat}}
+                  </div>
+              </div>
+
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" [disabled]="!enginForm.valid" (click)="onSubmit(selectedEngin.id)" >valider</button>
+            <button type="button" class="btn" data-dismiss="modal">fermer</button>
+        </div>
+        
+    </div> <!-- end modal content -->
+  </div>
+</div>
